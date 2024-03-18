@@ -1,0 +1,873 @@
+// Route GET users
+{
+    "GET_USERS": {
+        "request":  {
+            "path": "{URL_users}",
+            "method": "GET",
+            "description": "Obtener todos los usuarios",
+            "parameters": []
+        },
+        "header_response": {
+            "total_response": "100",
+            "page": "5",
+            "users_x_page": "20"
+        },
+        "response": {
+            "status": 200,
+            "message": "Obteniendo Todos los usuarios",
+            "example_response": [
+                {
+                    "route_user": "{URL_users/1}"
+                },
+                {
+                    "route_user": "{URL_users/2}"
+                }
+            ]
+        },
+        "error_response": {
+            "status": 404,
+            "message": "Recurso no encontrado",
+            "error_code": "Not_found"
+        }
+    }
+},
+// Route GET users/id
+{
+    "GET_USER_ID":{
+        "request":  {
+            "path": "{URL_users/id}",
+            "method": "GET",
+            "description": "Obtener un usuario especifico",
+            "parameters": [
+                {
+                    "name": "id",
+                    "type": "integer",
+                    "description": "id del usuario"
+                }
+            ]
+        },
+        {
+            "hader_response": {
+                "total_response": "1",
+                "page": "1",
+                "user_x_page": "1"
+            },
+            "response": {
+                "status": 200,
+                "message": "Obteniendo usuario especifico",
+                "dataType_response": {
+                        "id": "integer",
+                        "username": "string",
+                        "role": "string",
+                        "email": "string",
+                        "phone": "string",
+                        "password":"string",
+                        "shipping_address": "string",
+                        "payment_method": "string",
+                        "status": "string",
+                        "URL_messages": "{URL_messages/id_user}",
+                        "URL_reviews": "{URL_reviews/id_user}",
+                        "URL_shopping_products": "{URL_shopping_products/id_user}",
+                    },
+                "example_response": [
+                    {
+                        "id": "1",
+                        "username": "nombre_usuario",
+                        "role": "Cliente",
+                        "email": "usuario@example.com",
+                        "phone": "+5555555555",
+                        "password":"Abc1234",
+                        "shipping_address": "Avenida_calle_number_comuna",
+                        "payment_method": "Pago_Online",
+                        "status": "Activo",
+                        "URL_messages": "{mensajes_enviado_usuario/1}",
+                        "URL_reviews": "{reseñas_de_usuario/1}",
+                        "URL_shopping_products": "{productos_comprados_usuario/1}",
+                    },
+                    {
+                        "id": "2",
+                        "username": "nombre_usuario2",
+                        "role": "Administrador",
+                        "email": "usuario2@example.com",
+                        "phone": "+5577777777",
+                        "password":"Abc1235",
+                        "shipping_address": "Avenida_calle_number_comuna",
+                        "payment_method": "Pago_Efectivo",
+                        "status": "Activo",
+                        "URL_messages": "{mensjes_enviado_usuario/2}",
+                        "URL_reviews": "{reseñas_de_usuario/2}",
+                        "URL_shopping_products": "{productos_comprados_usuario/2}",
+                    }
+                ],
+                "error_response": {
+                    "status": 404,
+                    "message": "Recurso no encontrado",
+                    "error_code": "Not_found"
+                }
+            }
+        }
+    }
+},
+// Route POST users
+{
+    "POST_USER": {
+        "request":  {
+            "route": "{URL_users}",
+            "method": "POST",
+            "description": "Crear un nuevo usuario",
+            "parameters":[],
+            "body_request": [
+                {
+                    "username": "string",
+                    "role": "string",
+                    "email": "string",
+                    "phone": "string",
+                    "password":"string",
+                    "shipping_address": "string",
+                    "payment_method": "string",
+                    "status": "string"
+                }
+            ]
+        },
+        "header_request":{
+            "total_response": "1",
+            "page": "1",
+            "user_x_page": "1"
+        },
+        "response": {
+            "status": 201,
+            "message": "Usuario creado con exito",
+            "example_response": {
+                "id": "3",
+                "new_username": "nuevo_usuario",
+                "new_email": "usuario3@example.com",
+                "new_phone": "+55123456789",
+                "new_password": "Cdf2468",
+                "new_shipping_address": "Avenida_calle_number_comuna",
+                "new_payment_method": "Pago_Transferencia",
+                "new_status": "Inactivo"
+            }
+        },
+        "error_response":{
+            "status": 400,
+            "message": "Solicitud incorrecta, verifique los parametros del recurso",
+            "error_code": "Bad_request"
+        }
+    }
+},
+// Route PUT users/id
+{
+    "PUT_USER_ID":{
+        "request":  {
+            "route": "{URL_users/id}",
+            "method": "PUT",
+            "description": "Actualizar datos de usuario",
+            "parameters": [
+                {
+                    "name": "id",
+                    "type": "integer",
+                    "description": "id del usuario"
+                }
+            ],
+            "body_request": {
+                    "new_username": "string",
+                    "new_role": "string",
+                    "new_email": "string",
+                    "new_phone": "string",
+                    "new_password":"string",
+                    "new_shipping_address": "string",
+                    "new_payment_method": "string",
+                    "new_status": "string"
+            }
+        },
+        "header_response": {
+            "total_response": "1",
+            "page": "1",
+            "user_x_page": "1"
+        },
+        "response": {
+            "status": 200,
+            "message": "Actualizando datos del usuario",
+            "example_response": [
+                {
+                    "id": "2",
+                    "new_username": "otro_nombre_deUsuario",
+                    "new_rol": "otro_rol_de_usuario",
+                    "new_email": "otro@correo.com",
+                    "new_phone": "+5577777577",
+                    "new_password":"otra_contraseña",
+                    "new_shipping_address": "otra_direccion_de_envio",
+                    "new_payment_method": "otro_metodo_de_pago",
+                    "new_status": "otro_estado"
+                },
+            ]
+        },
+        "error_response":{
+            {
+                "status": 400,
+                "message": "Solicitud incorrecta, verifique los parametros del recurso",
+                "error_code": "Bad_request"
+            },
+        }
+    }
+    
+},
+// Route DELETE users/id
+{
+    "DELETE_USER_ID":{
+        "request":  {
+            "route": "{URL_users/id}",
+            "method": "DELETE",
+            "description": "Eliminar un usuario",
+            "parameters": [
+                {
+                    "name": "id",
+                    "type": "integer",
+                    "description": "id del usuario"
+                }
+            ]
+        },
+        "header_response": {
+            "total_response": "1",
+            "page": "1",
+            "user_x_page": "1"
+        },
+        "response": {
+            "status": 204,
+            "message": "Usuario eliminado",
+            "code_error": "No_content"
+        },
+        "error_response": {
+            "status": 404,
+            "message": "Recurso que intenta eliminar no encontrado ",
+            "code_error": "Not_found"
+        }
+    }
+},
+
+// Route GET products
+{
+    "GET_PRODUCT": {
+        "request":  {
+            "route": "{URL_products}",
+            "method": "GET",
+            "description": "Obtener todos los productos",
+            "parameters": []
+        },
+        "header_response": {
+            "total_response": "100",
+            "page": "5",
+            "product_x_page": "20"
+        },
+        "Response": {
+            "status": 200,
+            "message": "Obteniendo todos los productos",
+            "example_response": [
+                {
+                    "route_product": "{URL_products/1}"
+                },
+                {
+                    "route_product": "{URL_products/2}"
+                },
+            ]
+        },
+        "error_response": {
+            "status": 404,
+            "message": "Recurso no encontrado",
+            "error_code": "Not_found"
+        }
+    }
+},
+// Route GET products/id 
+{
+    "GET_PRODUCT_ID": {
+        "request":  {
+            "route": "{URL_products/id}",
+            "method": "GET",
+            "description": "Obtener un producto especifico",
+            "parameters": [
+                {
+                    "name": "id",
+                    "type": "integer",
+                    "description": "id del producto"
+                }
+            ]
+        },
+        "header_response": {
+            "total_response": "1",
+            "page": "1",
+            "product_x_page": "1"
+        },
+        "response": {
+            "status": 200,
+            "message": "Obteniendo producto especifico",
+            "dataType_response": {
+                    "id": "integer",
+                    "name": "string",
+                    "description": "string",
+                    "price": "decimal",
+                    "stock": "int",
+                    "category": "{URL_categories/id_category}",
+                    "url_img": "url_img",
+                    "route_reviews": "{URL_reviews/id_product}",
+                    "route_shopping_user": "{URL_users_shopping/id_product}",
+                    "date_post": "Date()",
+                    "user_id_product": "{URL_users/id_user}"
+            },
+            "example_response": [
+                {
+                    "id": "1",
+                    "name": "nombre_producto",
+                    "description": "descripcion_del_producto",
+                    "price": "7.000",
+                    "stock": "10",
+                    "category": "{URL_categories/8}",
+                    "url_img": "url_img",
+                    "route_reviews": "reseñas_del_producto/1}",
+                    "route_shopping_user": "usuarios_que_compraron_Producto/1}",
+                    "date_post": "20/05/2019",
+                    "user_id_create_product": "{usuarios/2}"
+                },
+                {
+                    "id": "2",
+                    "name": "nombre_producto2",
+                    "description": "descripcion_del_producto2",
+                    "price": "10.000",
+                    "stock": "20",
+                    "category": "{URL_categories/4}",
+                    "url_img": "url_img",
+                    "route_reviews": "reseñas_del_producto/2}",
+                    "route_shopping_user": "usuarios_que_compraron_Producto/2}",
+                    "date_post": "12/05/2018",
+                    "user_id_create_product": "{usuarios/10}"
+                }
+            ],
+            "error_response": {
+                "status": 404,
+                "message": "Recurso no encontrado",
+                "error_code": "Not_found"
+            }
+        }
+    }
+},
+// Route POST products
+{
+    "POST_PRODUCT": {
+        "request":  {
+            "route": "{URL_id_user/products}",
+            "method": "POST",
+            "description": "Crear un nuevo producto",
+            "parameters": [],
+            "body_request": [
+                {
+                    "name": "string",
+                    "description": "string",
+                    "price": "decimal",
+                    "stock": "int",
+                    "category": "{URL_categories/id_category}",
+                    "url_img": "url_img",
+                    "date_post": "Date()",
+                }
+            ]
+        },
+        "header_response":{
+            "total_response": "1",
+            "page": "1",
+            "product_x_page": "1"
+        },
+        "response": {
+            "status": 201,
+            "message": "Producto creado con exito",
+            "example_response": {
+                "id": "3",
+                "name": "nombre_producto3",
+                "description": "descripcion_del_producto3",
+                "price": "25.000",
+                "stock": "9",
+                "category": "{URL_categories/3}",
+                "url_img": "url_img"
+            }
+        },
+        "error_response":{
+            "status": 400,
+            "message": "Solicitud incorrecta, verifique los parametros del recurso",
+            "error_code": "Bad_request"
+        }
+    }
+},
+// Route PUT products/id
+{
+    "PUT_PRODUCT_ID":{
+        "request":  {
+            "route": "{URL_products/id}",
+            "method": "PUT",
+            "description": "Actualizar datos del producto",
+            "parameters": [
+                {
+                    "name": "id",
+                    "type": "integer",
+                    "description": "id del producto"
+                }
+            ],
+            "body_request": {
+                "name": "string",
+                "description": "string",
+                "price": "decimal",
+                "stock": "int",
+                "category": "{URL_categories/id_category}",
+                "url_img": "url_img"
+            }
+        },
+        "header_response": {
+            "total_response": "1",
+            "page": "1",
+            "product_x_page": "1"
+        },
+        "response": {
+            "status": 200,
+            "message": "Actualizando datos del producto",
+            "example_response": [
+                {
+                    "id": "2",
+                    "new_name": "otro_nombre_delProducto2",
+                    "description": "descripcion_del_producto2",
+                    "new_price": "15.000",
+                    "category": "Categoria_limitada",
+                    "stock": "10",
+                    "URL_img": "url/otra_img",
+                },
+            ]
+        },
+        "error_response":{
+            "status": 400,
+            "message": "Solicitud incorrecta, verifique los parametros del recurso",
+            "error_code": "Bad_request"
+        }
+    }
+},
+// Route DELETE productos/id
+{
+    "DELETE_PRODUCTO_ID":{
+        "request":  {
+            "route": "{URL_products/id}",
+            "method": "DELETE",
+            "description": "Eliminar un producto",
+            "parameters": [
+                {
+                    "name": "id",
+                    "type": "integer",
+                    "description": "id del producto"
+                }
+            ]
+        },
+        "header_response": {
+            "total_response": "1",
+            "page": "1",
+            "product_x_page": "1"
+        },
+        "response": {
+            "status": 204,
+            "message": "Producto eliminado",
+        },
+        "error_response": {
+            "status": 404,
+            "message": "Recurso que intenta eliminar no encontrado ",
+            "code_error": "Not_found"
+        }
+    }
+},
+
+// Route GET categories
+{
+    "GET_CATEGORIES": {
+        "request":  {
+            "route": "{URL_categories}",
+            "method": "GET",
+            "description": "Obtener todas las categorias",
+            "parameters": []
+        },
+        "header_response": {
+            "total_response": "10",
+            "page": "2",
+            "category_x_page": "5"
+        },
+        "Response": {
+            "status": 200,
+            "message": "Obteniendo todas las categorias",
+            "example_response": [
+                {
+                    "route_category": "{URL_categories/1}"
+                },
+                {
+                    "route_category": "{URL_categories/2}"
+                }
+            ] 
+        },
+        "error_response": {
+            "status": 404,
+            "message": "Recurso no encontrado",
+            "error_code": "Not_found"
+        }
+    }
+},
+
+// Route GET categories/id
+{
+    "GET_CATEGORIES_ID":{
+        "request":  {
+            "route": "{URL_categories/id}",
+            "method": "GET",
+            "description": "Obtener una categoria especifica",
+            "parameters" [
+                {
+                    "name": "id",
+                    "type": "integer",
+                    "description": "id de la categoria"
+                }
+            ]
+        },
+        "header_response": {
+            "total_response": "1",
+            "page": "1",
+            "category_x_page": "1"
+        },
+        "response": {
+            "typeDate_response": {
+                "id": "bigint",
+                "nameCategory": "string",
+            },
+            "example_response":[
+                {
+                    "id": "1",
+                    "name_category": "nombreCategoria",
+                },
+                {
+                    "id": "2",
+                    "name_category": "nombreCategoria",
+                }
+            ]
+        },
+        "error_response": {
+            "status": 404,
+            "message": "Recurso no encontrado",
+            "error_code": "Not_found"
+        }
+    }
+},
+// Route GET reviews
+{
+    "GET_REVIEWS":{
+        "request":  {
+        "route": "{URL_reviews}",
+        "method": "GET",
+        "description": "Obtener todas las reseñas",
+        "parameters": []
+        },
+        "header_response": {
+            "total_response": "1000",
+            "page": "50",
+            "review_x_page": "20"
+        },
+        "Response": {
+            "status": 200,
+            "message": "Obteniendo todas las reseñas",
+            "example_response": [
+                {
+                    "route_reviews": "{URL_reviews/1}"
+                },
+                {
+                    "route_reviews": "{URL_reviews/2}"
+                },
+            ] 
+        },
+        "error_response": {
+            "status": 404,
+            "message": "Recurso no encontrado",
+            "error_code": "Not_found"
+        }
+    }
+},
+// Route GET reviews/id
+{
+    "GET_REVIEWS_ID": {
+        "request":  {
+            "route": "{URL_reviews/id}",
+            "method": "GET",
+            "descripcion": "Obtener una reseña especifica",
+            "parameters": [
+                {
+                    "name": "id",
+                    "type": "integer",
+                    "description": "id de la reseña"
+                }
+            ]
+        },
+        "header_response": {
+            "total_response": "1",
+            "page": "1",
+            "review_x_page": "1"
+        },
+        "Response": {
+            "status": 200,
+            "message": "Obteniendo una reseña especifica",
+            "dataType_response": {
+                "id": "bigint",
+                "review": "string",
+                "rating": "int",
+                "route_product": "{URL_products/id}",
+                "route_user":"{URL_users/id}",
+                "date_review": "Date()"
+            },
+            "example_response": [
+                {
+                    "id": "1",
+                    "review": "contenido de la reseña 1",
+                    "rating": "100",
+                    "route_product": "producto_con_la_reseña/15}",
+                    "route_user":"usuario_que_escribio_reseña/3}",
+                    "date_review": "23/03/2024"
+                },
+                {
+                    "id": "2",
+                    "review": "contenido de la reseña 2",
+                    "rating": "88",
+                    "route_product": "reseña_del_producto/25",
+                    "route_user":"reseña_del_usuario/7",
+                    "date_review": "21/03/2023"
+                }
+            ]
+        },
+        "error_response": {
+            "status": 404,
+            "message": "Recurso no encontrado",
+            "error_code": "Not_found"
+        }
+    }
+},
+// Route POST reviews
+{
+    "POST_REVIEWS_ID": {
+        "request":  {
+            "route": "{URL_reviews/id}",
+            "method": "POST",
+            "description": "Crear una nueva reseña",
+            "parameters": [],
+            "body_request": [
+                {
+                    "review": "contenido de la nueva reseña",
+                }
+            ]
+        },
+        "header_response": {
+            "total_response": "1",
+            "page": "1",
+            "review_x_page": "1"
+        },
+        "response": {
+            "status": 201,
+            "message": "Reseña creada con exito",
+            "example_response": {
+                    "id": "3",
+                    "review": "contenido de la reseña 3",
+                    "rating": "0",
+                    "route_product": "reseña_del_producto/50",
+                    "route_user":"reseña_del_usuario/3",
+                    "date_review": "13/10/2022"
+            }
+        },
+        "error_response":{
+            "status": 400,
+            "message": "Solicitud incorrecta, verifique los parametros del recurso",
+            "error_code": "Bad_request"
+        }
+    }
+},
+// Route PUT reviews/id
+{
+    "PUT_REVIEWS_ID":{
+        "request":  {
+            "route": "{URL_reviews/id}",
+            "method": "PUT",
+            "description": "Actualizar reseña",
+            "parameters": [
+                {
+                    "name": "id_reseña",
+                    "type": "integer",
+                    "description": "id_reseña"
+                }
+            ],
+            "body_request":
+                {
+                    "review": "contenido de la reseña actualizada",
+                }
+        },
+        "header_response": {
+            "total_response": "1",
+            "page": "1",
+            "review_x_page": "1"
+        },
+        "response": {
+            "status": 200,
+            "message": "Actualizando datos del producto",
+            "example_response": [
+                {
+                    "id": "3",
+                    "review": "contenido modificado de la reseña 3",
+                    "rating": "0",
+                    "route_product": "reseña_del_producto/50",
+                    "route_user":"reseña_del_usuario/3",
+                    "date_review": "20/01/2023"
+                },
+            ]
+        },
+        "error_response":{
+            "status": 400,
+            "message": "Solicitud incorrecta, verifique los parametros del recurso",
+            "error_code": "Bad_request"
+        },
+    }
+},
+// Route GET messages
+{
+    "GET_MESSAGES":{
+        "request": {
+            "path": "{URL_messages}",
+            "method": "GET",
+            "description": "Obetner todos los mensajes enviados y recibidos de los usuarios",
+            "parameters": []
+        },
+        "header_response": {
+            "total_response": "200",
+            "page": "20",
+            "message_x_page": "10"
+        },
+        "response": {
+            "status": 200,
+            "message": "Obteniendo todos los mensajes enviados y recibidos segun usuario",
+            "example_response": {
+                "message_sender": [
+                    {
+                        "route_message": "{URL_messages/1}"
+                    },
+                    {
+                        "route_message": "{URL_messages/2}"
+                    }
+                ],
+                "message_recipient": [
+                    {
+                        "route_message": "{URL_messages/1}"
+                    },
+                    {
+                        "route_message": "{URL_messages/2}"
+                    }
+                ],
+
+            }
+        },
+        "error_response": {
+            "status": 404,
+            "message": "Recurso no encontrado",
+            "error_code": "Not_found"
+        }
+    }
+}
+// Route GET messages/id_user
+{
+    "GET_MESSAGE_ID":{
+        "request":  {
+            "path": "{URL_messages/id_users}",
+            "method": "GET",
+            "description": "Obtener mensajes de un usuario especifico",
+            "parameters": [
+                {
+                    "name": "id",
+                    "type": "integer",
+                    "description": "id del usuario"
+                },
+            ]
+        },
+        "header_response": {
+            "total_response": "10",
+            "page": "2",
+            "message_x_page": "5"
+        },
+        "response": {
+            "status": 200,
+            "message": "Obteniendo mensajes de un usuario especifico",
+            "dataType_response": {
+                    "id": "integer",
+                    "message": "string",
+                    "URL_messages": "{URL_messages/id}",
+                    "URL_user_message": "{URL_users/id_user}",
+                },
+            "example_response": {
+                "message_sender": [
+                    {
+                        "id": "1",
+                        "messages": "Texto del mensaje enviado",
+                        "URL_user_message": "mensaje_recibidoPor_usuario/12",
+                    },
+                    {
+                        "id": "2",
+                        "messages": "Texto del mensaje enviado",
+                        "URL_user_message": "mensaje_recibidoPor_usuario/23",
+                    },
+                ],
+                "message_recipient": [
+                    {
+                        "id": "1",
+                        "messages": "Texto del mensaje recibido",
+                        "URL_user_message": "mensaje_enviadoDe_usuario/6",
+                    },
+                    {
+                        "id": "2",
+                        "messages": "Texto del mensaje recibido",
+                        "URL_user_message": "mensaje_enviadoDe_usuario/13",
+                    },
+                ]
+            }
+                
+            
+        },
+        "error_response": {
+            "status": 404,
+            "message": "Recurso no encontrado",
+            "error_code": "Not_found"
+        }
+    }
+},
+// Route POST messages
+{
+    "POST_MESSAGES": {
+        "request":  {
+            "route": "{URL_reviews/id}",
+            "method": "POST",
+            "description": "Crear un nuevo mensaje",
+            "parameters": [],
+            "body_request": [
+                {
+                    "message": "Texto del mensaje a enviar",
+                }
+            ]
+        },
+        "header_response": {
+            "total_response": "1",
+            "page": "1",
+            "message_x_page": "1"
+        },
+        "response": {
+            "status": 201,
+            "message": "Mensaje creado con exito",
+            "example_response": {
+                    "id": "3",
+                    "messages": "Texto del mensaje a enviar",
+                    "URL_user_message": "mensaje_recibidoPor_usuario/10"
+            }
+        },
+        "error_response":{
+            "status": 400,
+            "message": "Solicitud incorrecta, verifique los parametros del recurso",
+            "error_code": "Bad_request"
+        }
+    }
+},

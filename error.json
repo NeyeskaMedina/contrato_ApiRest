@@ -1,0 +1,32 @@
+//GET
+{
+    "error_response": {
+        "status": 404,
+        "message": "Recurso no encontrado",
+        "error_code": "Not_found"
+    }
+},
+//POST
+{
+    "error_response":{
+        "status": 400,
+        "message": "Solicitud incorrecta, verifique los parametros del recurso",
+        "error_code": "Bad_request"
+    }
+}
+//PUT
+{
+    "error_response":{
+            "status": 400,
+            "message": "Solicitud incorrecta, verifique los parametros del recurso",
+            "error_code": "Bad_request"
+    },
+}
+//DELETE
+{
+        "error_response": {
+        "status": 404,
+        "message": "Recurso que intenta eliminar no encontrado ",
+        "code_error": "Not_found"
+    }
+}
