@@ -1,0 +1,124 @@
+FORMAT: 1A
+HOST: https://polls.apiblueprint.org/
+
+# Farmacias SYG
+Documentacion API en detalle de los recursos para ser consumida.
+# Group Usuarios
+Mostramos en detalles como puedes consumir los métodos GET, POST, PUT, DELETE con los usuarios.
+## Metodo GET /users [/users]
+
+    ### GET /users 
+Obteniendo todos los usuarios
+
++ Request (application/json)
+
+        [{
+            "request": {
+                "path": "{URL_users}",
+                "method": "GET",
+                "description": "Obtener todos los usuarios",
+                "parameters": []
+            },
+            "header_response": {
+                "total_response": "100",
+                "page": "5",
+                "usersXPage": "20"
+            },
+            "response": {
+                "status": 200,
+                "message": "Obteniendo Todos los usuarios",
+                "example_response": 
+                [
+                    {
+                    "routeUser": "{URL_users/1}"
+                    },
+                    {
+                        "routeUser": "{URL_users/2}"
+                    }
+                ]
+            },
+            "error_response": {
+                "status": 404,
+                "message": "Recurso no encontrado",
+                "errorCode": "Not_found"
+            }
+        }]
+
+
+## Metodo GET users/id [/users/{id}]
+
+    ### GET /users/{id}
+Obteniendo usuario especifico
+
++ Request (application/json)
+
+        [{
+            "request": {
+                "path": "{URL_users/id}",
+                "method": "GET",
+                "description": "Obtener un usuario especifico",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "type": "integer",
+                        "description": "id del usuario"
+                    }
+                ]
+            },
+            "hader_response": {
+                "total_response": "1",
+                "page": "1",
+                "user_x_page": "1"
+            },
+            "response": {
+                "status": 200,
+                "message": "Obteniendo usuario especifico",
+                "dataType_response": {
+                        "id": "integer",
+                        "username": "string",
+                        "role": "string",
+                        "email": "string",
+                        "phone": "string",
+                        "birth_date": "Date()",
+                        "password":"string",
+                        "status": "string",
+                        "URL_reviews": "{URL_reviews/id_user}",
+                        "URL_shopping_products": "{URL_shopping_products/id_user}",
+                        "URL_favorites_products": "{URL_favorites_products/id_user}"
+                    },
+                "example_response": [
+                    {
+                        "id": "1",
+                        "username": "nombre_usuario",
+                        "role": "Cliente",
+                        "email": "usuario@example.com",
+                        "phone": "+5555555555",
+                        "password":"Abc1234",
+                        "birth_date": "11-03-2000",
+                        "status": "Activo",
+                        "URL_reviews": "{reseñas_de_usuario/1}",
+                        "URL_shopping_products": "{productos_comprados_usuario/1}",
+                        "URL_favorites_products": "{URL_productos_favoritos_usuario/1}"
+                    },
+                    {
+                        "id": "2",
+                        "username": "nombre_usuario",
+                        "role": "Cliente",
+                        "email": "usuario@example.com",
+                        "phone": "+5555555555",
+                        "birth_date": "11-03-2000",
+                        "password":"Abc1234",
+                        "status": "Activo",
+                        "URL_reviews": "{reseñas_de_usuario/2}",
+                        "URL_shopping_products": "{productos_comprados_usuario/2}",
+                        "URL_favorites_products": "{URL_productos_favoritos_usuario/2}"
+                    },
+                ],
+                "error_response": {
+                    "status": 404,
+                    "message": "Recurso no encontrado",
+                    "error_code": "Not_found"
+                }
+                
+            }
+        }]
